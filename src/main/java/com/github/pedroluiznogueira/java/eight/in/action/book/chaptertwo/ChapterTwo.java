@@ -1,6 +1,6 @@
-package com.github.pedroluiznogueira.java.eight.in.action.chaptertwo;
+package com.github.pedroluiznogueira.java.eight.in.action.book.chaptertwo;
 
-import com.github.pedroluiznogueira.java.eight.in.action.chaptertwo.domain.Apple;
+import com.github.pedroluiznogueira.java.eight.in.action.book.domain.Apple;
 
 import java.util.Comparator;
 import java.util.List;

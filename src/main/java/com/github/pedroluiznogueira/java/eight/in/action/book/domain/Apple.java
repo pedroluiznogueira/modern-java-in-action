@@ -1,4 +1,4 @@
-package com.github.pedroluiznogueira.java.eight.in.action.chaptertwo.domain;
+package com.github.pedroluiznogueira.java.eight.in.action.book.domain;
 
 import lombok.Builder;
 import lombok.Value;

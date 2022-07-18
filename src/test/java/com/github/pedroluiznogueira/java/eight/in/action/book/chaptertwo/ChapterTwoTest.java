@@ -1,9 +1,8 @@
-package com.github.pedroluiznogueira.java.eight.in.action.chaptertwo;
+package com.github.pedroluiznogueira.java.eight.in.action.book.chaptertwo;
 
-import com.github.pedroluiznogueira.java.eight.in.action.chaptertwo.domain.Apple;
-import com.github.pedroluiznogueira.java.eight.in.action.chaptertwo.utils.ChapterTwoUtils;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.github.pedroluiznogueira.java.eight.in.action.book.AbstractUnitTest;
+import com.github.pedroluiznogueira.java.eight.in.action.book.domain.Apple;
+import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
@@ -15,14 +14,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public final class ChapterTwoTest {
-
-    private List<Apple> apples;
-
-    @BeforeEach
-    public void setup() {
-        apples = ChapterTwoUtils.generateApples();
-    }
+public class ChapterTwoTest extends AbstractUnitTest {
 
     @Test
     public void filterApples() {
@@ -31,7 +23,7 @@ public final class ChapterTwoTest {
         final int expectedSize = 3;
 
         // act
-        final List<Apple> filteredApples = ChapterTwo.filterApples(apples, predicate);
+        final List<Apple> filteredApples = ChapterTwo.filterApples(getApples(), predicate);
 
         // assert
         assertThat(filteredApples)
@@ -43,11 +35,11 @@ public final class ChapterTwoTest {
         // arrange
         final Function<Apple, String> function = Apple::getColor;
         final List<String> possibleColors = List.of(
-                ChapterTwoUtils.Colors.GREEN.getColor(),
-                ChapterTwoUtils.Colors.RED.getColor());
+                AbstractUnitTest.Colors.GREEN.getColor(),
+                AbstractUnitTest.Colors.RED.getColor());
 
         // act
-        final Stream<String> applesColors = ChapterTwo.getApplesColors(apples, function);
+        final Stream<String> applesColors = ChapterTwo.getApplesColors(getApples(), function);
         final boolean containsColors = applesColors
                 .collect(Collectors.toList())
                 .containsAll(possibleColors);
@@ -63,7 +55,7 @@ public final class ChapterTwoTest {
         final Comparator<Apple> comparator = Comparator.comparing(Apple::getWeight);
 
         // act
-        final Stream<Apple> applesColors = ChapterTwo.getApplesInAscendingOrder(apples, comparator);
+        final Stream<Apple> applesColors = ChapterTwo.getApplesInAscendingOrder(getApples(), comparator);
 
         // assert
         final Consumer<Double> consumer = weight -> assertThat(weight).isLessThan(150D);

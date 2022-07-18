@@ -1,14 +1,20 @@
-package com.github.pedroluiznogueira.java.eight.in.action.chaptertwo.utils;
+package com.github.pedroluiznogueira.java.eight.in.action.book;
 
-import com.github.pedroluiznogueira.java.eight.in.action.chaptertwo.domain.Apple;
-import lombok.AccessLevel;
+import com.github.pedroluiznogueira.java.eight.in.action.book.domain.Apple;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import org.testng.annotations.BeforeSuite;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class ChapterTwoUtils {
+public abstract class AbstractUnitTest {
+
+    @Getter
+    private List<Apple> apples;
+    @Getter
+    private List<String> names;
+    @Getter
+    private IntStream numbers;
 
     @Getter
     public enum Colors {
@@ -17,13 +23,14 @@ public final class ChapterTwoUtils {
 
         private final String color;
 
-        Colors(String color) {
+        Colors(final String color) {
             this.color = color;
         }
     }
 
-    public static List<Apple> generateApples() {
-        return List.of(
+    @BeforeSuite
+    public void setup() {
+        apples = List.of(
                 Apple.builder().color(Colors.GREEN.getColor()).weight(150D).build(),
                 Apple.builder().color(Colors.GREEN.getColor()).weight(100D).build(),
                 Apple.builder().color(Colors.GREEN.getColor()).weight(150D).build(),
@@ -31,5 +38,7 @@ public final class ChapterTwoUtils {
                 Apple.builder().color(Colors.RED.getColor()).weight(100D).build(),
                 Apple.builder().color(Colors.RED.getColor()).weight(100D).build(),
                 Apple.builder().color(Colors.RED.getColor()).weight(150D).build());
+        names = List.of("pedro", "", "luiz", "nogueira", "mendes");
+        numbers = IntStream.of(1, 2, 3, 4, 5);
     }
 }
